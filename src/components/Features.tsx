@@ -63,7 +63,7 @@ export default function Features() {
                     className="text-center mb-12 sm:mb-16"
                 >
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-4">
-                        Neden <span className="text-red-600">Fire Blocker</span>?
+                        Öne Çıkan <span className="text-red-600">Özellikler</span>
                     </h2>
                     <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
                         Modern teknoloji ile geleneksel güvenliği bir araya getiren devrim

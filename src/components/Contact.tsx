@@ -7,10 +7,10 @@ import Image from "next/image";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
+        requestType: "siparis",
         name: "",
         email: "",
         phone: "",
-        quantity: "1",
         message: "",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,12 +27,12 @@ export default function Contact() {
 
         setTimeout(() => {
             setIsSubmitted(false);
-            setFormData({ name: "", email: "", phone: "", quantity: "1", message: "" });
+            setFormData({ requestType: "siparis", name: "", email: "", phone: "", message: "" });
         }, 3000);
     };
 
     const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
     ) => {
         setFormData({
             ...formData,
@@ -51,7 +51,7 @@ export default function Contact() {
                     className="text-center mb-12 sm:mb-16"
                 >
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-                        Hemen <span className="text-red-600">Sipariş Verin</span>
+                        Bayilik / <span className="text-red-600">Sipariş </span> Formu
                     </h2>
                     <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
                         Güvenliğiniz için bugün harekete geçin. Size en kısa sürede
@@ -68,6 +68,24 @@ export default function Contact() {
                         transition={{ duration: 0.6 }}
                     >
                         <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
+                            <div>
+                                <label htmlFor="contact-type" className="block text-sm mb-2 text-gray-300">
+                                    Talep Türü *
+                                </label>
+                                <select
+                                    id="contact-type"
+                                    name="requestType"
+                                    value={formData.requestType}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full bg-gray-900 border border-gray-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors text-sm sm:text-base appearance-none"
+                                >
+                                    <option value="siparis">Sipariş Ver</option>
+                                    <option value="bayilik">Bayilik Başvurusu</option>
+                                    <option value="diger">Diğer</option>
+                                </select>
+                            </div>
+
                             <div>
                                 <label htmlFor="contact-name" className="block text-sm mb-2 text-gray-300">
                                     Ad Soyad *
@@ -117,21 +135,6 @@ export default function Contact() {
                             </div>
 
                             <div>
-                                <label htmlFor="contact-quantity" className="block text-sm mb-2 text-gray-300">
-                                    Adet
-                                </label>
-                                <input
-                                    id="contact-quantity"
-                                    type="number"
-                                    name="quantity"
-                                    value={formData.quantity}
-                                    onChange={handleChange}
-                                    min="1"
-                                    className="w-full bg-gray-900 border border-gray-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors text-sm sm:text-base"
-                                />
-                            </div>
-
-                            <div>
                                 <label htmlFor="contact-message" className="block text-sm mb-2 text-gray-300">
                                     Mesajınız (Opsiyonel)
                                 </label>
@@ -150,8 +153,8 @@ export default function Contact() {
                                 type="submit"
                                 disabled={isSubmitting || isSubmitted}
                                 className={`w-full py-3 sm:py-4 text-base sm:text-lg rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 ${isSubmitted
-                                        ? "bg-green-600 text-white"
-                                        : "bg-red-600 hover:bg-red-700 text-white hover:shadow-lg hover:shadow-red-600/25"
+                                    ? "bg-green-600 text-white"
+                                    : "bg-red-600 hover:bg-red-700 text-white hover:shadow-lg hover:shadow-red-600/25"
                                     } disabled:opacity-80`}
                             >
                                 {isSubmitted ? (
@@ -181,7 +184,11 @@ export default function Contact() {
                                     </span>
                                 ) : (
                                     <>
-                                        Sipariş Talebi Gönder
+                                        {formData.requestType === "bayilik"
+                                            ? "Başvuru Gönder"
+                                            : formData.requestType === "siparis"
+                                                ? "Sipariş Talebi Gönder"
+                                                : "Mesajı Gönder"}
                                         <Send className="group-hover:translate-x-1 transition-transform w-5 h-5" />
                                     </>
                                 )}
@@ -223,9 +230,6 @@ export default function Contact() {
                                 <div>
                                     <div className="font-bold mb-1 text-sm sm:text-base">Telefon</div>
                                     <div className="text-gray-400 text-sm sm:text-base">0850 123 45 67</div>
-                                    <div className="text-gray-400 text-sm sm:text-base">
-                                        Hafta içi 09:00 - 18:00
-                                    </div>
                                 </div>
                             </div>
 
@@ -234,9 +238,6 @@ export default function Contact() {
                                 <div>
                                     <div className="font-bold mb-1 text-sm sm:text-base">E-posta</div>
                                     <div className="text-gray-400 text-sm sm:text-base">info@fireblocker.com</div>
-                                    <div className="text-gray-400 text-sm sm:text-base">
-                                        destek@fireblocker.com
-                                    </div>
                                 </div>
                             </div>
 
@@ -245,7 +246,7 @@ export default function Contact() {
                                 <div>
                                     <div className="font-bold mb-1 text-sm sm:text-base">Adres</div>
                                     <div className="text-gray-400 text-sm sm:text-base">
-                                        Teknoloji Geliştirme Bölgesi
+                                        Mahmutbey Mahallesi, 2427. Sokak, 144 Bağcılar
                                         <br />
                                         No: 123, 34000
                                         <br />
@@ -255,22 +256,7 @@ export default function Contact() {
                             </div>
                         </div>
 
-                        {/* Price Info */}
-                        <div className="bg-white text-black rounded-2xl p-6 sm:p-8 text-center">
-                            <div className="text-gray-600 mb-2 text-sm sm:text-base">
-                                Özel Tanıtım Fiyatı
-                            </div>
-                            <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">
-                                ₺499
-                            </div>
-                            <div className="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base">
-                                <span className="line-through">₺699</span>
-                                <span className="ml-2 text-red-600 font-bold">%29 İndirim</span>
-                            </div>
-                            <div className="text-xs sm:text-sm text-gray-500">
-                                Ücretsiz kargo • 2 yıl garanti dahil
-                            </div>
-                        </div>
+
                     </motion.div>
                 </div>
             </div>

@@ -3,10 +3,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Flame } from "lucide-react";
+import Image from "next/image";
 
 const navItems = [
-    { label: "Özellikler", href: "#features" },
+    { label: "Fireblocker Nedir ?", href: "#what-is" },
     { label: "Nasıl Çalışır", href: "#how-it-works" },
+    { label: "Özellikler", href: "#features" },
     { label: "Teknik Bilgiler", href: "#specs" },
     { label: "İletişim", href: "#contact" },
 ];
@@ -37,8 +39,8 @@ export default function Header() {
             animate={{ y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                    ? "bg-black/95 backdrop-blur-md shadow-lg shadow-black/20"
-                    : "bg-black/80 backdrop-blur-sm"
+                ? "bg-black/95 backdrop-blur-md shadow-lg shadow-black/20"
+                : "bg-black/80 backdrop-blur-sm"
                 } border-b border-gray-800/50`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -53,12 +55,14 @@ export default function Header() {
                         className="flex items-center gap-2 sm:gap-3 group"
                         aria-label="Fire Blocker Ana Sayfa"
                     >
-                        <div className="w-9 h-9 sm:w-10 sm:h-10 bg-red-600 rounded-lg flex items-center justify-center group-hover:bg-red-500 transition-colors duration-300">
-                            <Flame className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                        </div>
-                        <span className="text-lg sm:text-xl font-bold text-white">
-                            Fire<span className="text-red-600">Blocker</span>
-                        </span>
+                        <Image
+                            src="/images/fireblocker-logo.png"
+                            alt="Fireblocker Logo"
+                            width={300}
+                            height={300}
+                            className="h-16 sm:h-24 md:h-28 w-auto object-contain transform scale-110 sm:scale-125 origin-left"
+                            priority
+                        />
                     </a>
 
                     {/* Desktop Navigation */}
@@ -81,7 +85,7 @@ export default function Header() {
                             onClick={() => scrollToSection("#contact")}
                             className="bg-red-600 hover:bg-red-700 text-white px-5 lg:px-6 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-red-600/25"
                         >
-                            Sipariş Ver
+                            Bayilik / Sipariş
                         </button>
                     </div>
 
@@ -127,7 +131,7 @@ export default function Header() {
                                 onClick={() => scrollToSection("#contact")}
                                 className="bg-red-600 hover:bg-red-700 text-white w-full py-3 rounded-lg font-semibold mt-3 transition-colors"
                             >
-                                Sipariş Ver
+                                Bayilik / Sipariş
                             </motion.button>
                         </nav>
                     </motion.div>

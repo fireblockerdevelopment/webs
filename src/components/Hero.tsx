@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function Hero() {
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+        <section id="what-is" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 z-0">
                 <Image
@@ -31,14 +31,13 @@ export default function Hero() {
                         className="space-y-6 sm:space-y-8 text-center lg:text-left"
                     >
                         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-                            Yangından Korunmanın
+                            Fireblocker
                             <br />
-                            <span className="text-red-600">Yeni Yolu</span>
+                            <span className="text-red-600">Nedir ?</span>
                         </h1>
 
                         <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto lg:mx-0">
-                            Otomatik yangın algılama ve söndürme. Her an yanınızda
-                            taşıyabileceğiniz güvenlik çözümü.
+                            Fireblocker, yangından korunmanın yeni yoludur. Otomatik yangın algılama ve söndürme özelliğiyle her an yanınızda taşıyabileceğiniz güvenlik çözümüdür.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 mt-6 sm:mt-10 justify-center lg:justify-start">

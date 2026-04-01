@@ -32,14 +32,22 @@ const certifications = [
     {
         title: "CE Sertifikalı",
         description: "Avrupa standartlarına uygun",
+        image: "/images/ce-logo.png"
     },
     {
         title: "TSE Onaylı",
-        description: "Türk standartları enstitüsü",
+        description: "Türk Standartları Enstitüsü",
+        image: "/images/tse-logo.png"
     },
     {
-        title: "EN 15276",
-        description: "Avrupa yangın standartları",
+        title: "RoHS Belgeli",
+        description: "Tehlikeli madde içermez",
+        image: "/images/rohs-logo.png"
+    },
+    {
+        title: "EMC Uyumluluğu",
+        description: "Elektromanyetik uyumluluk",
+        image: "/images/emc-logo.png"
     },
 ];
 
@@ -62,7 +70,7 @@ export default function TechnicalSpecs() {
                     className="text-center mb-12 sm:mb-16"
                 >
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-4">
-                        Teknik <span className="text-red-600">Özellikler</span>
+                        Teknik <span className="text-red-600">Bilgiler</span>
                     </h2>
                     <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
                         Profesyonel performans, kompakt boyut
@@ -141,11 +149,11 @@ export default function TechnicalSpecs() {
                         Sertifikalar ve Standartlar
                     </h3>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
                         {certifications.map((cert, index) => (
                             <div key={index} className="text-center">
-                                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                                    <Award className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                                <div className="h-16 sm:h-20 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                                    <Image src={cert.image} alt={cert.title} width={80} height={80} className="max-h-full w-auto object-contain" />
                                 </div>
                                 <h4 className="font-bold text-black mb-1 sm:mb-2 text-sm sm:text-base">
                                     {cert.title}
@@ -157,19 +165,6 @@ export default function TechnicalSpecs() {
                         ))}
                     </div>
 
-                    <div className="bg-gray-50 rounded-xl p-4 sm:p-6">
-                        <h4 className="font-bold text-black mb-3 text-sm sm:text-base">
-                            Paket İçeriği:
-                        </h4>
-                        <ul className="space-y-2">
-                            {packageContents.map((item, index) => (
-                                <li key={index} className="flex items-center gap-2">
-                                    <div className="w-2 h-2 bg-red-600 rounded-full flex-shrink-0" />
-                                    <span className="text-gray-700 text-sm sm:text-base">{item}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
                 </motion.div>
             </div>
         </section>

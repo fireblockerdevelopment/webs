@@ -40,7 +40,7 @@ export default function JsonLd() {
         },
         address: {
             "@type": "PostalAddress",
-            streetAddress: "Teknoloji Geliştirme Bölgesi No: 123",
+            streetAddress: "Mahmutbey Mahallesi, 2427. Sokak, 144 Bağcılar",
             addressLocality: "İstanbul",
             addressCountry: "TR",
             postalCode: "34000",
