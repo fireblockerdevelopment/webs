@@ -11,13 +11,13 @@ const steps = [
     },
     {
         number: "02",
-        title: "Otomatik Algılama",
-        description: "Cihaz yangını otomatik olarak algılar",
+        title: "Otomatik Aktivasyon",
+        description: "Alev ile temasta ve ya 170 derece sıcaklığa ulaştığında",
     },
     {
         number: "03",
         title: "Anında Müdahale",
-        description: "3 saniye içinde otomatik olarak devreye girer",
+        description: "Anında otomatik olarak devreye girer",
     },
     {
         number: "04",
@@ -27,12 +27,9 @@ const steps = [
 ];
 
 const safetyTips = [
-    "Her zaman güvenli mesafeden müdahale edin",
-    "Ürünü düzenli olarak kontrol edin",
-    "Son kullanma tarihine dikkat edin",
-    "Eğitim alarak kendinizi hazırlayın",
-    "Büyük yangınlarda itfaiyeyi arayın",
-    "Kullanım talimatlarını okuyun",
+    "Cihazı doğrudan aleve tutmayınız",
+    "Yetkili izni olmadan cihazı açmayınız",
+    "Cizhaz söndürmeyi tamamladıktan sonra aşırı ısınacaktır lütfen dokunmayınız",
 ];
 
 export default function HowItWorks() {

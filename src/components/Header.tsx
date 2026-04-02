@@ -60,7 +60,7 @@ export default function Header() {
                             alt="Fireblocker Logo"
                             width={300}
                             height={300}
-                            className="h-16 sm:h-24 md:h-28 w-auto object-contain transform scale-110 sm:scale-125 origin-left"
+                            className="h-16 sm:h-20 md:h-24 w-auto object-contain transform scale-[1.85] sm:scale-[1.8] md:scale-[2] origin-left"
                             priority
                         />
                     </a>

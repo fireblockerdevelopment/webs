@@ -9,8 +9,10 @@ export default function Contact() {
     const [formData, setFormData] = useState({
         requestType: "siparis",
         name: "",
+        company: "",
         email: "",
         phone: "",
+        address: "",
         message: "",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,7 +29,7 @@ export default function Contact() {
 
         setTimeout(() => {
             setIsSubmitted(false);
-            setFormData({ requestType: "siparis", name: "", email: "", phone: "", message: "" });
+            setFormData({ requestType: "siparis", name: "", company: "", email: "", phone: "", address: "", message: "" });
         }, 3000);
     };
 
@@ -103,6 +105,21 @@ export default function Contact() {
                             </div>
 
                             <div>
+                                <label htmlFor="contact-company" className="block text-sm mb-2 text-gray-300">
+                                    Firma Adı
+                                </label>
+                                <input
+                                    id="contact-company"
+                                    type="text"
+                                    name="company"
+                                    value={formData.company}
+                                    onChange={handleChange}
+                                    className="w-full bg-gray-900 border border-gray-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors text-sm sm:text-base"
+                                    placeholder="Firma veya kurum adınız"
+                                />
+                            </div>
+
+                            <div>
                                 <label htmlFor="contact-email" className="block text-sm mb-2 text-gray-300">
                                     E-posta *
                                 </label>
@@ -131,6 +148,22 @@ export default function Contact() {
                                     required
                                     className="w-full bg-gray-900 border border-gray-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors text-sm sm:text-base"
                                     placeholder="0555 123 45 67"
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="contact-address" className="block text-sm mb-2 text-gray-300">
+                                    Adres *
+                                </label>
+                                <textarea
+                                    id="contact-address"
+                                    name="address"
+                                    value={formData.address}
+                                    onChange={handleChange}
+                                    required
+                                    rows={2}
+                                    className="w-full bg-gray-900 border border-gray-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors resize-none text-sm sm:text-base"
+                                    placeholder="Açık adresiniz"
                                 />
                             </div>
 

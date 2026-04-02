@@ -24,22 +24,7 @@ interface ComparisonRow {
 }
 
 const comparisonData: ComparisonRow[] = [
-    {
-        feature: "Otomatik Müdahale (İnsan Gücü Gerektirmez)",
-        fireblocker: "yes",
-        traditional: "no",
-        sprinkler: "yes",
-        gas: "yes",
-        balls: "yes",
-    },
-    {
-        feature: "Kompakt, Temiz ve Hafif Çözüm",
-        fireblocker: "yes",
-        traditional: "no",
-        sprinkler: "no",
-        gas: "no",
-        balls: "no",
-    },
+
     {
         feature: "Kolay Kurulum (Yapıştır ve Geç)",
         fireblocker: "yes",
@@ -57,28 +42,12 @@ const comparisonData: ComparisonRow[] = [
         balls: "yes",
     },
     {
-        feature: "Kullanım Sonrası Kalıntı Bırakmaz",
-        fireblocker: "yes",
-        traditional: "no",
-        sprinkler: "no",
-        gas: "yes",
-        balls: "no",
-    },
-    {
         feature: "Dar ve Kapalı Alanlar İçin Uygun (Elektrik Panosu vb.)",
         fireblocker: "yes",
         traditional: "no",
         sprinkler: "no",
         gas: "no",
         balls: "no",
-    },
-    {
-        feature: "Minimum Bakım Gerektirir",
-        fireblocker: "yes",
-        traditional: "warning",
-        sprinkler: "no",
-        gas: "no",
-        balls: "warning",
     },
     {
         feature: "Çoklu Alan Kullanımı (Araç, Pano, Ev)",
@@ -88,12 +57,20 @@ const comparisonData: ComparisonRow[] = [
         gas: "no",
         balls: "no",
     },
+    {
+        feature: "Otomatik Müdahale",
+        fireblocker: "yes",
+        traditional: "no",
+        sprinkler: "yes",
+        gas: "yes",
+        balls: "yes",
+    },
 ];
 
 const RenderIcon = ({ status }: { status: Status }) => {
     if (status === "yes") {
         return (
-            <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-red-600 flex items-center justify-center mx-auto shadow-lg shadow-red-600/40">
+            <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-green-600 flex items-center justify-center mx-auto shadow-lg shadow-green-600/40">
                 <Check className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
         );
@@ -139,11 +116,10 @@ export default function Comparison() {
                                     {tableHeaders.map((header, index) => (
                                         <th
                                             key={header.id}
-                                            className={`py-6 px-4 text-center text-xs sm:text-sm font-bold uppercase tracking-wider border-b-2 border-gray-100 ${
-                                                header.isHighlighted
-                                                    ? "text-red-600 bg-red-50/30 border-l-2 border-r-2 border-l-red-100 border-r-red-100 relative"
-                                                    : "text-gray-500 bg-white"
-                                            } ${index === 0 ? "text-left pl-8 w-1/4" : "w-[12%]"}`}
+                                            className={`py-6 px-4 text-center text-xs sm:text-sm font-bold uppercase tracking-wider border-b-2 border-gray-100 ${header.isHighlighted
+                                                ? "text-red-600 bg-red-50/30 border-l-2 border-r-2 border-l-red-100 border-r-red-100 relative"
+                                                : "text-gray-500 bg-white"
+                                                } ${index === 0 ? "text-left pl-8 w-1/4" : "w-[12%]"}`}
                                         >
                                             {header.isHighlighted && (
                                                 <div className="absolute top-0 left-0 right-0 h-1 bg-red-600"></div>
@@ -190,7 +166,7 @@ export default function Comparison() {
 
                 <div className="mt-8 text-center text-sm text-gray-500 max-w-3xl mx-auto space-y-2">
                     <p className="flex items-center justify-center gap-2">
-                        <span className="inline-block w-4 h-4 rounded-full bg-red-600 flex-shrink-0"></span> Fireblocker patenti / tasarım tescili koruması altındadır.
+                        <span className="inline-block w-4 h-4 rounded-full bg-green-600 flex-shrink-0"></span> Fireblocker patenti / tasarım tescili koruması altındadır.
                     </p>
                     <p className="flex items-center justify-center gap-2">
                         <AlertTriangle className="w-4 h-4 text-amber-500 flex-shrink-0" /> Standart ürünlerde bakım ve kurulum zorlukları yaşanabilir.

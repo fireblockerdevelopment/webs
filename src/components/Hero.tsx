@@ -32,8 +32,6 @@ export default function Hero() {
                     >
                         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
                             Fireblocker
-                            <br />
-                            <span className="text-red-600">Nedir ?</span>
                         </h1>
 
                         <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto lg:mx-0">
