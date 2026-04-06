@@ -18,7 +18,7 @@ export default function Hero() {
     if (!isMounted) return null;
 
     return (
-        <section id="what-is" className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-black">
+        <section id="what-is" className="relative min-h-screen flex items-start lg:items-center justify-center overflow-hidden bg-black">
             <AnimatePresence mode="wait">
                 {!isVideoEnded ? (
                     <motion.div
@@ -50,7 +50,7 @@ export default function Hero() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1 }}
-                        className="relative w-full h-full flex items-center justify-center"
+                        className="relative w-full"
                     >
                         {/* Background Image with Overlay */}
                         <div className="absolute inset-0 z-0">
