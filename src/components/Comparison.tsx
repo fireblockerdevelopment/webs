@@ -4,125 +4,85 @@ import { motion } from "framer-motion";
 import { Check, X, AlertTriangle } from "lucide-react";
 
 const tableHeaders = [
-    { id: "feature", label: "Özellik Karşılaştırması" },
-    { id: "fireblocker", label: "FIREBLOCKER", isHighlighted: true },
-    { id: "traditional", label: "Standart Yangın Söndürücü" },
-    { id: "sprinkler", label: "Otomatik Sprinkler" },
-    { id: "gas", label: "Gazlı Söndürme Sistemleri" },
-    { id: "balls", label: "Söndürme Topları" },
+    { id: "feature", label: "Özellik Karşılaştırması", align: "left" },
+    { id: "fireblocker", label: "FIREBLOCKER", align: "center", isHighlighted: true },
+    { id: "others", label: "DİĞER SİSTEMLER", align: "center" },
 ];
 
-type Status = "yes" | "no" | "warning";
-
-interface ComparisonRow {
-    feature: string;
-    fireblocker: Status;
-    traditional: Status;
-    sprinkler: Status;
-    gas: Status;
-    balls: Status;
-}
-
-const comparisonData: ComparisonRow[] = [
-
+const comparisonData = [
     {
-        feature: "Kolay Kurulum (Yapıştır ve Geç)",
-        fireblocker: "yes",
-        traditional: "warning",
-        sprinkler: "no",
-        gas: "no",
-        balls: "no",
+        feature: "Kolay Kurulum",
+        fireblocker: true,
+        others: false,
     },
     {
-        feature: "Kablo, Tesisat veya Güç Gerektirmez",
-        fireblocker: "yes",
-        traditional: "no",
-        sprinkler: "no",
-        gas: "no",
-        balls: "yes",
+        feature: "Müdahele Gerektirmez",
+        fireblocker: true,
+        others: false,
     },
     {
-        feature: "Dar ve Kapalı Alanlar İçin Uygun (Elektrik Panosu vb.)",
-        fireblocker: "yes",
-        traditional: "no",
-        sprinkler: "no",
-        gas: "no",
-        balls: "no",
+        feature: "Dar ve Kapalı Alanlar için Uygun",
+        fireblocker: true,
+        others: false,
     },
     {
-        feature: "Çoklu Alan Kullanımı (Araç, Pano, Ev)",
-        fireblocker: "yes",
-        traditional: "no",
-        sprinkler: "no",
-        gas: "no",
-        balls: "no",
+        feature: "Çoklu kullanım alanı",
+        fireblocker: true,
+        others: false,
     },
     {
         feature: "Otomatik Müdahale",
-        fireblocker: "yes",
-        traditional: "no",
-        sprinkler: "yes",
-        gas: "yes",
-        balls: "yes",
+        fireblocker: true,
+        others: false,
     },
 ];
 
-const RenderIcon = ({ status }: { status: Status }) => {
-    if (status === "yes") {
+const StatusIcon = ({ status, isPrimary = false }: { status: boolean; isPrimary?: boolean }) => {
+    if (status) {
         return (
-            <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-green-600 flex items-center justify-center mx-auto shadow-lg shadow-green-600/40">
-                <Check className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-            </div>
-        );
-    }
-    if (status === "warning") {
-        return (
-            <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-amber-500/10 flex items-center justify-center mx-auto">
-                <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500" />
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center mx-auto shadow-lg ${isPrimary ? "bg-green-600 shadow-green-600/30" : "bg-green-500 shadow-green-500/20"}`}>
+                <Check className="w-5 h-5 text-white" />
             </div>
         );
     }
     return (
-        <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-200 flex items-center justify-center mx-auto">
-            <X className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+        <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mx-auto">
+            <X className="w-5 h-5 text-gray-400" />
         </div>
     );
 };
 
 export default function Comparison() {
     return (
-        <section className="py-16 sm:py-20 md:py-24 bg-gray-50 border-t border-gray-200">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <section id="karsilastirma" className="py-20 md:py-32 bg-gray-50 overflow-hidden">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-12 sm:mb-16"
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
                 >
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-4 uppercase tracking-tight">
+                    <h2 className="text-3xl md:text-5xl font-extrabold text-black mb-6 tracking-tight uppercase">
                         FIREBLOCKER <span className="text-red-600">VS DİĞERLERİ</span>
                     </h2>
-                    <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-                        Neden geleneksel yangın güvenliği çözümlerinden çok daha üstün olduğumuzu keşfedin.
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Neden tercih edildiğimizi rakamlarla ve gerçek özelliklerle görün.
                     </p>
                 </motion.div>
 
-                <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
                     <div className="overflow-x-auto">
-                        <table className="w-full min-w-[1000px] border-collapse">
+                        <table className="w-full border-collapse">
                             <thead>
-                                <tr>
-                                    {tableHeaders.map((header, index) => (
+                                <tr className="bg-white border-b-2 border-gray-100">
+                                    {tableHeaders.map((header) => (
                                         <th
                                             key={header.id}
-                                            className={`py-6 px-4 text-center text-xs sm:text-sm font-bold uppercase tracking-wider border-b-2 border-gray-100 ${header.isHighlighted
-                                                ? "text-red-600 bg-red-50/30 border-l-2 border-r-2 border-l-red-100 border-r-red-100 relative"
-                                                : "text-gray-500 bg-white"
-                                                } ${index === 0 ? "text-left pl-8 w-1/4" : "w-[12%]"}`}
+                                            className={`py-8 px-6 text-sm font-bold uppercase tracking-wider ${header.align === "left" ? "text-left pl-10" : "text-center"
+                                                } ${header.isHighlighted ? "text-red-600 bg-red-50/30 relative" : "text-gray-500"}`}
                                         >
                                             {header.isHighlighted && (
-                                                <div className="absolute top-0 left-0 right-0 h-1 bg-red-600"></div>
+                                                <div className="absolute top-0 left-0 right-0 h-1.5 bg-red-600"></div>
                                             )}
                                             {header.label}
                                         </th>
@@ -130,32 +90,23 @@ export default function Comparison() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {comparisonData.map((row, rowIndex) => (
+                                {comparisonData.map((row, index) => (
                                     <motion.tr
-                                        initial={{ opacity: 0, y: 10 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
+                                        key={index}
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
                                         viewport={{ once: true }}
-                                        transition={{ delay: rowIndex * 0.05, duration: 0.4 }}
-                                        key={rowIndex}
-                                        className="group"
+                                        transition={{ delay: index * 0.05 }}
+                                        className="group hover:bg-gray-50/50 transition-colors"
                                     >
-                                        <td className="py-5 px-4 pl-8 border-b border-gray-100 text-sm sm:text-base font-semibold text-gray-800 bg-white group-hover:bg-gray-50 transition-colors">
+                                        <td className="py-6 px-6 pl-10 border-b border-gray-50 text-base font-semibold text-gray-800">
                                             {row.feature}
                                         </td>
-                                        <td className="py-5 px-4 text-center border-b border-gray-100 bg-red-50/30 border-l-2 border-r-2 border-l-red-100 border-r-red-100">
-                                            <RenderIcon status={row.fireblocker} />
+                                        <td className="py-6 px-6 border-b border-gray-50 bg-red-50/10 text-center">
+                                            <StatusIcon status={row.fireblocker} isPrimary={true} />
                                         </td>
-                                        <td className="py-5 px-4 text-center border-b border-gray-100 bg-white group-hover:bg-gray-50 transition-colors">
-                                            <RenderIcon status={row.traditional} />
-                                        </td>
-                                        <td className="py-5 px-4 text-center border-b border-gray-100 bg-white group-hover:bg-gray-50 transition-colors">
-                                            <RenderIcon status={row.sprinkler} />
-                                        </td>
-                                        <td className="py-5 px-4 text-center border-b border-gray-100 bg-white group-hover:bg-gray-50 transition-colors">
-                                            <RenderIcon status={row.gas} />
-                                        </td>
-                                        <td className="py-5 px-4 text-center border-b border-gray-100 bg-white group-hover:bg-gray-50 transition-colors">
-                                            <RenderIcon status={row.balls} />
+                                        <td className="py-6 px-6 border-b border-gray-50 text-center">
+                                            <StatusIcon status={row.others} />
                                         </td>
                                     </motion.tr>
                                 ))}
@@ -164,12 +115,15 @@ export default function Comparison() {
                     </div>
                 </div>
 
-                <div className="mt-8 text-center text-sm text-gray-500 max-w-3xl mx-auto space-y-2">
-                    <p className="flex items-center justify-center gap-2">
-                        <span className="inline-block w-4 h-4 rounded-full bg-green-600 flex-shrink-0"></span> Fireblocker patenti / tasarım tescili koruması altındadır.
+                <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-6 text-sm text-gray-500 font-medium">
+                    <p className="flex items-center gap-2">
+                        <Check className="w-5 h-5 text-green-600" /> Tam Koruma
                     </p>
-                    <p className="flex items-center justify-center gap-2">
-                        <AlertTriangle className="w-4 h-4 text-amber-500 flex-shrink-0" /> Standart ürünlerde bakım ve kurulum zorlukları yaşanabilir.
+                    <p className="flex items-center gap-2">
+                        <AlertTriangle className="w-5 h-5 text-amber-500" /> Profesyonel Bakım Gereksinimi
+                    </p>
+                    <p className="flex items-center gap-2">
+                        <X className="w-5 h-5 text-red-500" /> Yetersiz Müdahale
                     </p>
                 </div>
             </div>

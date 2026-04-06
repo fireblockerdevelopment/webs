@@ -16,7 +16,7 @@ export default function JsonLd() {
             availability: "https://schema.org/InStock",
             seller: {
                 "@type": "Organization",
-                name: "Fire Blocker",
+                name: "YTR GRUP YAPI MUHENDISLIK SAN VE TIC LTD STI",
             },
         },
         aggregateRating: {
@@ -29,7 +29,7 @@ export default function JsonLd() {
     const organizationJsonLd = {
         "@context": "https://schema.org",
         "@type": "Organization",
-        name: "Fire Blocker",
+        name: "YTR GRUP YAPI MUHENDISLIK SAN VE TIC LTD STI",
         url: "https://fireblocker.com",
         logo: "https://fireblocker.com/images/logo.png",
         contactPoint: {
@@ -40,10 +40,9 @@ export default function JsonLd() {
         },
         address: {
             "@type": "PostalAddress",
-            streetAddress: "Mahmutbey Mahallesi, 2427. Sokak, 144 Bağcılar",
-            addressLocality: "İstanbul",
+            streetAddress: "ORUC REİS MAH 543. SOK ALTUNTAS APT NO:18/B",
+            addressLocality: "ESENLER / ISTANBUL",
             addressCountry: "TR",
-            postalCode: "34000",
         },
         sameAs: [
             "https://www.facebook.com/fireblocker",

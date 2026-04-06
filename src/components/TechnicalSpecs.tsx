@@ -47,7 +47,7 @@ const certifications = [
     {
         title: "EMC Uyumluluğu",
         description: "Elektromanyetik uyumluluk",
-        image: "/images/emc-logo.png"
+        image: "/images/logo_entecerma.png"
     },
 ];
 

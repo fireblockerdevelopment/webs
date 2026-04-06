@@ -101,7 +101,7 @@ export default function Footer() {
                         <ul className="space-y-3 text-gray-400 text-sm">
                             <li className="flex items-center gap-2">
                                 <Phone className="w-4 h-4 text-red-600 flex-shrink-0" />
-                                <span>0850 123 45 67</span>
+                                <span>0543 659 0 659</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <Mail className="w-4 h-4 text-red-600 flex-shrink-0" />
@@ -110,9 +110,11 @@ export default function Footer() {
                             <li className="flex items-start gap-2">
                                 <MapPin className="w-4 h-4 text-red-600 flex-shrink-0 mt-0.5" />
                                 <span>
-                                    Mahmutbey Mahallesi, 2427. Sokak, 144 Bağcılar
+                                    YTR GRUP YAPI MUHENDISLIK SAN VE TIC LTD STI
                                     <br />
-                                    İstanbul, Türkiye
+                                    ORUC REİS MAH 543. SOK ALTUNTAS APT NO:18/B
+                                    <br />
+                                    ESENLER / ISTANBUL
                                 </span>
                             </li>
                         </ul>

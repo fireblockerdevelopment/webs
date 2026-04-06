@@ -262,7 +262,7 @@ export default function Contact() {
                                 <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-red-600 flex-shrink-0 mt-1" />
                                 <div>
                                     <div className="font-bold mb-1 text-sm sm:text-base">Telefon</div>
-                                    <div className="text-gray-400 text-sm sm:text-base">0850 123 45 67</div>
+                                    <div className="text-gray-400 text-sm sm:text-base">0543 659 0 659</div>
                                 </div>
                             </div>
 
@@ -279,11 +279,12 @@ export default function Contact() {
                                 <div>
                                     <div className="font-bold mb-1 text-sm sm:text-base">Adres</div>
                                     <div className="text-gray-400 text-sm sm:text-base">
-                                        Mahmutbey Mahallesi, 2427. Sokak, 144 Bağcılar
+                                        YTR GRUP YAPI MUHENDISLIK SAN VE TIC LTD STI
                                         <br />
-                                        No: 123, 34000
                                         <br />
-                                        İstanbul, Türkiye
+                                        ORUC REİS MAH 543. SOK ALTUNTAS APT NO:18/B
+                                        <br />
+                                        ESENLER / ISTANBUL
                                     </div>
                                 </div>
                             </div>
