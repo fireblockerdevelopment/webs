@@ -35,11 +35,6 @@ const certifications = [
         image: "/images/ce-logo.png"
     },
     {
-        title: "TSE Onaylı",
-        description: "Türk Standartları Enstitüsü",
-        image: "/images/tse-logo.png"
-    },
-    {
         title: "RoHS Belgeli",
         description: "Tehlikeli madde içermez",
         image: "/images/rohs-logo.png"
@@ -146,7 +141,7 @@ export default function TechnicalSpecs() {
                         Sertifikalar ve Standartlar
                     </h3>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
                         {certifications.map((cert, index) => (
                             <div key={index} className="text-center">
                                 <div className="h-16 sm:h-20 flex items-center justify-center mx-auto mb-3 sm:mb-4">

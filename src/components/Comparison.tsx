@@ -120,9 +120,6 @@ export default function Comparison() {
                         <Check className="w-5 h-5 text-green-600" /> Tam Koruma
                     </p>
                     <p className="flex items-center gap-2">
-                        <AlertTriangle className="w-5 h-5 text-amber-500" /> Profesyonel Bakım Gereksinimi
-                    </p>
-                    <p className="flex items-center gap-2">
                         <X className="w-5 h-5 text-red-500" /> Yetersiz Müdahale
                     </p>
                 </div>
