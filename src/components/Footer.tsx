@@ -2,8 +2,8 @@ import {
     Mail,
     Phone,
     MapPin,
-    Flame,
 } from "lucide-react";
+import Image from "next/image";
 
 // Custom Social Icons
 const Facebook = (props: any) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>;
@@ -41,17 +41,17 @@ export default function Footer() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
                     {/* Brand */}
                     <div className="space-y-4 sm:col-span-2 md:col-span-1">
-                        <div className="flex items-center gap-2 sm:gap-3">
-                            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-red-600 rounded-lg flex items-center justify-center">
-                                <Flame className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                            </div>
-                            <span className="text-lg sm:text-xl font-bold">
-                                Fire<span className="text-red-600">Blocker</span>
-                            </span>
+                        <div className="flex items-center gap-2 sm:gap-3 mt-4 sm:mt-0">
+                            <Image
+                                src="/images/fireblocker-logo.png"
+                                alt="Fireblocker Logo"
+                                width={300}
+                                height={300}
+                                className="h-16 sm:h-20 md:h-24 w-auto object-contain transform scale-[1.85] sm:scale-[1.8] md:scale-[2] origin-left"
+                            />
                         </div>
                         <p className="text-gray-400 text-sm leading-relaxed">
-                            Güvenliğiniz için son teknoloji yangın söndürme çözümleri
-                            sunuyoruz.
+                            Güvenliğiniz için fireblocker!
                         </p>
                     </div>
 

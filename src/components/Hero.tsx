@@ -71,7 +71,7 @@ export default function Hero() {
                             className="grid grid-cols-3 gap-4 sm:gap-8 mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-gray-700"
                         >
                             {[
-                                { value: "3 sn", label: "Otomatik Müdahale" },
+                                { value: "Hızlı", label: "Otomatik Aktivasyon" },
                                 { value: "%99.9", label: "Etkili Söndürme" },
                                 { value: "10 yıl", label: "Raf Ömrü" },
                             ].map((stat, index) => (

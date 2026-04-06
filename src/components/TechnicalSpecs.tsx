@@ -87,15 +87,12 @@ export default function TechnicalSpecs() {
                         className="bg-white p-6 sm:p-8 rounded-xl shadow-lg"
                     >
                         <Image
-                            src="/images/tanıtım_2.jpeg"
+                            src="/images/tanıtım-yeni-1.png"
                             alt="Fire Blocker ürünü yakından görünüm"
                             width={600}
                             height={400}
                             className="w-full h-auto rounded-lg"
                         />
-                        <p className="text-center mt-4 text-gray-600 font-medium text-sm sm:text-base">
-                            Kompakt ve Kullanışlı Tasarım
-                        </p>
                     </motion.div>
 
                     <motion.div
@@ -106,11 +103,11 @@ export default function TechnicalSpecs() {
                         className="bg-white p-6 sm:p-8 rounded-xl shadow-lg flex items-center justify-center"
                     >
                         <Image
-                            src="/images/tanıtım_1.jpeg"
+                            src="/images/detayli-tanitim-1.jpg"
                             alt="Fire Blocker teknik etiket bilgileri"
-                            width={400}
+                            width={600}
                             height={400}
-                            className="w-full max-w-md h-auto"
+                            className="w-full h-auto rounded-lg"
                         />
                     </motion.div>
                 </div>
