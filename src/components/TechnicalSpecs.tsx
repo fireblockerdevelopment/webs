@@ -40,7 +40,7 @@ const certifications = [
         image: "/images/rohs-logo.png"
     },
     {
-        title: "EMC Uyumluluğu",
+        title: "ECM Uyumluluğu",
         description: "Elektromanyetik uyumluluk",
         image: "/images/logo_entecerma.png"
     },
@@ -98,7 +98,7 @@ export default function TechnicalSpecs() {
                         className="bg-white p-6 sm:p-8 rounded-xl shadow-lg flex items-center justify-center"
                     >
                         <Image
-                            src="/images/detayli-tanitim-1.jpg"
+                            src="/images/detayli-tanitim-1.jpeg"
                             alt="Fire Blocker teknik etiket bilgileri"
                             width={600}
                             height={400}
