@@ -22,15 +22,31 @@ export default function Contact() {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulate form submission
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        setIsSubmitted(true);
-        setIsSubmitting(false);
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
 
-        setTimeout(() => {
-            setIsSubmitted(false);
-            setFormData({ requestType: "siparis", name: "", company: "", email: "", phone: "", address: "", message: "" });
-        }, 3000);
+            if (response.ok) {
+                setIsSubmitted(true);
+                setTimeout(() => {
+                    setIsSubmitted(false);
+                    setFormData({ requestType: "siparis", name: "", company: "", email: "", phone: "", address: "", message: "" });
+                }, 3000);
+            } else {
+                const data = await response.json();
+                alert(`Form gönderilirken bir hata oluştu: ${data.error || 'Lütfen daha sonra tekrar deneyin.'}`);
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            alert("Sunucuya bağlanılamadı. Lütfen bağlantınızı kontrol edip tekrar deneyin.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleChange = (
