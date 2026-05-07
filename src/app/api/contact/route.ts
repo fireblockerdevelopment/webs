@@ -1,52 +1,114 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 
-// resend API Anahtarını .env.local dosyasından alıyoruz.
-const resend = new Resend(process.env.RESEND_API_KEY?.trim());
+export const runtime = 'nodejs';
+
+function escapeHtml(value: string) {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+function normalizeSecureSetting(value?: string) {
+  return value?.trim().toLowerCase() === 'true';
+}
+
+function getErrorMessage(error: unknown) {
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  return 'Bilinmeyen hata';
+}
 
 export async function POST(request: Request) {
   try {
     const data = await request.json();
     const { requestType, name, company, email, phone, address, message } = data;
 
-    // Temel doğrulama
     if (!name || !email || !phone || !address) {
       return NextResponse.json({ error: 'Zorunlu alanlar eksik' }, { status: 400 });
     }
 
+    const smtpHost = process.env.SMTP_HOST?.trim();
+    const smtpPort = Number(process.env.SMTP_PORT || 587);
+    const smtpUser = process.env.SMTP_USER?.trim();
+    const smtpPass = process.env.SMTP_PASS;
+    const smtpSecure = normalizeSecureSetting(process.env.SMTP_SECURE);
+    const toEmail = process.env.CONTACT_TO_EMAIL?.trim();
+    const fromEmail = process.env.CONTACT_FROM_EMAIL?.trim() || smtpUser || toEmail;
+
+    if (!smtpHost || !smtpPort || !smtpUser || !smtpPass || !toEmail || !fromEmail) {
+      console.error('Missing SMTP environment variables');
+      return NextResponse.json({ error: 'Mail sunucusu yapılandırması eksik.' }, { status: 500 });
+    }
+
+    const requestTypeLabel =
+      requestType === 'bayilik'
+        ? 'Bayilik Başvurusu'
+        : requestType === 'siparis'
+          ? 'Sipariş Talebi'
+          : 'Diğer';
+
     const htmlContent = `
-      <h2>Fireblocker Web Sitesinden Yeni Bir Başvuru Geldi!</h2>
-      <p><strong>Talep Türü:</strong> ${requestType === 'bayilik' ? 'Bayilik Başvurusu' : requestType === 'siparis' ? 'Sipariş Talebi' : 'Diğer'}</p>
+      <h2>Fireblocker web sitesinden yeni bir başvuru geldi.</h2>
+      <p><strong>Talep Türü:</strong> ${requestTypeLabel}</p>
       <br/>
-      <p><strong>Ad Soyad:</strong> ${name}</p>
-      <p><strong>Firma Adı:</strong> ${company || 'Belirtilmedi'}</p>
-      <p><strong>E-posta:</strong> ${email}</p>
-      <p><strong>Telefon:</strong> ${phone}</p>
-      <p><strong>Adres:</strong> ${address}</p>
-      <p><strong>Mesaj:</strong><br/> ${message || 'Belirtilmedi'}</p>
+      <p><strong>Ad Soyad:</strong> ${escapeHtml(name)}</p>
+      <p><strong>Firma Adı:</strong> ${escapeHtml(company || 'Belirtilmedi')}</p>
+      <p><strong>E-posta:</strong> ${escapeHtml(email)}</p>
+      <p><strong>Telefon:</strong> ${escapeHtml(phone)}</p>
+      <p><strong>Adres:</strong> ${escapeHtml(address)}</p>
+      <p><strong>Mesaj:</strong><br/> ${escapeHtml(message || 'Belirtilmedi').replaceAll('\n', '<br/>')}</p>
     `;
 
-    // Bu bilgileri .env.local'dan çekeceğiz. Yoksa bir hata durumuna düşmesin diye varsayılan koyabiliriz ama .env.local kurulumu daha sağlıklı.
-    const fromEmail = process.env.CONTACT_FROM_EMAIL || 'info@fireblocker.com.tr';
-    const toEmail = process.env.CONTACT_TO_EMAIL || 'info@fireblocker.com.tr';
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpSecure,
+      auth: {
+        user: smtpUser,
+        pass: smtpPass,
+      },
+    });
 
-    const response = await resend.emails.send({
+    const result = await transporter.sendMail({
       from: `Fireblocker Web Form <${fromEmail}>`,
-      to: [toEmail],
-      subject: `Yeni Web Formu: ${requestType.toUpperCase()} - ${name}`,
+      to: toEmail,
+      subject: `Yeni Web Formu: ${requestTypeLabel} - ${name}`,
       html: htmlContent,
       replyTo: email,
     });
 
-    if (response.error) {
-      console.error('Resend API Error:', response.error);
-      return NextResponse.json({ error: response.error.message }, { status: 500 });
-    }
-
-    return NextResponse.json({ success: true, data: response.data }, { status: 200 });
-
+    return NextResponse.json(
+      {
+        success: true,
+        data: {
+          messageId: result.messageId,
+          accepted: result.accepted,
+          rejected: result.rejected,
+        },
+      },
+      { status: 200 }
+    );
   } catch (error) {
     console.error('Contact form submission error:', error);
-    return NextResponse.json({ error: 'Sunucu hatası oluştu, lütfen daha sonra tekrar deneyin.' }, { status: 500 });
+
+    const errorMessage = getErrorMessage(error);
+    const responseBody: { error: string; details?: string } = {
+      error: 'Sunucu hatası oluştu, lütfen daha sonra tekrar deneyin.',
+    };
+
+    if (process.env.NODE_ENV !== 'production') {
+      responseBody.details = errorMessage;
+    }
+
+    return NextResponse.json(
+      responseBody,
+      { status: 500 }
+    );
   }
 }
