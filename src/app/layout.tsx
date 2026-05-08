@@ -27,6 +27,14 @@ export const metadata: Metadata = {
   authors: [{ name: "Fire Blocker" }],
   creator: "Fire Blocker",
   publisher: "Fire Blocker",
+  icons: {
+    icon: [
+      { url: "/fireblocker-favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/fireblocker-favicon.svg", type: "image/svg+xml" },
+    ],
+  },
   robots: {
     index: true,
     follow: true,
@@ -75,7 +83,6 @@ export default function RootLayout({
   return (
     <html lang="tr" className={inter.variable}>
       <head>
-        <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#dc2626" />
         <script
           type="application/ld+json"
@@ -85,7 +92,7 @@ export default function RootLayout({
               "@type": "Organization",
               "name": "Fire Blocker",
               "url": "https://fireblocker.com.tr",
-              "logo": "https://fireblocker.com.tr/favicon.ico",
+              "logo": "https://fireblocker.com.tr/fireblocker-favicon.svg",
               "description": "Otomatik yangın algılama ve söndürme sistemi. 3 saniyede devreye giren, %99.9 etkili, 10 yıl raf ömrüne sahip kompakt yangın söndürücü.",
             }),
           }}
