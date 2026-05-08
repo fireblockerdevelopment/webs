@@ -286,7 +286,7 @@ export default function Contact() {
                                 <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-red-600 flex-shrink-0 mt-1" />
                                 <div>
                                     <div className="font-bold mb-1 text-sm sm:text-base">E-posta</div>
-                                    <div className="text-gray-400 text-sm sm:text-base">info@fireblocker.com</div>
+                                    <div className="text-gray-400 text-sm sm:text-base">info@fireblocker.com.tr</div>
                                 </div>
                             </div>
 

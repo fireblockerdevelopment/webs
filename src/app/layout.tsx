@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fireblocker.com"),
+  metadataBase: new URL("https://fireblocker.com.tr"),
   title: "Fire Blocker | Otomatik Yangın Söndürme Sistemi",
   description:
     "Fire Blocker otomatik yangın algılama ve söndürme sistemi. 3 saniyede devreye giren, %99.9 etkili, 10 yıl raf ömrüne sahip kompakt yangın söndürücü. Ev, araç ve iş yeriniz için güvenlik çözümü.",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "Fire Blocker | Otomatik Yangın Söndürme Sistemi",
     description:
       "Otomatik yangın algılama ve söndürme. 3 saniyede devreye giren, %99.9 etkili kompakt yangın söndürücü.",
-    url: "https://fireblocker.com",
+    url: "https://fireblocker.com.tr",
     siteName: "Fire Blocker",
     locale: "tr_TR",
     type: "website",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
   alternates: {
-    canonical: "https://fireblocker.com",
+    canonical: "https://fireblocker.com.tr",
   },
 };
 
@@ -84,8 +84,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Fire Blocker",
-              "url": "https://fireblocker.com",
-              "logo": "https://fireblocker.com/favicon.ico",
+              "url": "https://fireblocker.com.tr",
+              "logo": "https://fireblocker.com.tr/favicon.ico",
               "description": "Otomatik yangın algılama ve söndürme sistemi. 3 saniyede devreye giren, %99.9 etkili, 10 yıl raf ömrüne sahip kompakt yangın söndürücü.",
             }),
           }}

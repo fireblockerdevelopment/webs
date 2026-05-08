@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://fireblocker.com';
+const BASE_URL = 'https://fireblocker.com.tr';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

@@ -30,8 +30,8 @@ export default function JsonLd() {
         "@context": "https://schema.org",
         "@type": "Organization",
         name: "YTR GRUP YAPI MUHENDISLIK SAN VE TIC LTD STI",
-        url: "https://fireblocker.com",
-        logo: "https://fireblocker.com/images/logo.png",
+        url: "https://fireblocker.com.tr",
+        logo: "https://fireblocker.com.tr/images/logo.png",
         contactPoint: {
             "@type": "ContactPoint",
             telephone: "+90-850-123-4567",
